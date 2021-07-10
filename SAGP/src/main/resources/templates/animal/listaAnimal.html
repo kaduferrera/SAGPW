@@ -1,0 +1,49 @@
+<html>
+
+<head th:replace="~{base :: head}"></head>
+
+<body>
+	<div th:replace="~{base :: logo}"></div>
+	<div class="container">
+		<div th:replace="~{base :: titulo('Sistema Para Gestão Pecuária')}"></div>
+		<nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3 ">
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link" href="/proprietario">Proprietário</a>
+					<a class="nav-item nav-link" href="/animal">Animal</a>
+					<a class="nav-item nav-link" href="/funcionario">Funcionário</a>
+					<a class="nav-item nav-link" href="/propriedade">Propriedade</a>
+				</div>
+				<a href="/animal/formulario"><button class="btn btn-outline-dark ">Novo Animal</button></a>
+		</nav>
+		<div>
+			<table class="table table-bordered caption-top">
+				<div class="card-header">Lista de Animais</div>
+				<thead>
+					<tr>
+						<th>Tag</th>
+						<th>Raça</th>
+						<th>Data Nascimento</th>
+						<th>Sexo</th>
+						<th>Origem</th>
+						<th>Status</th>
+						<th>Peso</th>
+						<th>Classficação</th>
+					</tr>
+				</thead>
+				<tr th:each="animal : ${animais}">
+					<td th:text="${animal.tag}">Tag</td>
+					<td th:text="${animal.raca}">Raça</td>
+					<td th:text="${animal.dataNascimento}">Data Nascimento</td>
+					<td th:text="${animal.sexo}">Sexo</td>
+					<td th:text="${animal.origem}">Origem</td>
+					<td th:text="${animal.status}">Status</td>
+					<td th:text="${animal.peso}">Peso</td>
+					<td th:text="${animal.sexo}">Classificação</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>

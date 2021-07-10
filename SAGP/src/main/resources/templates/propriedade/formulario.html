@@ -1,0 +1,64 @@
+<html>
+
+<head th:replace="~{base :: head}"></head>
+
+<body>
+	<div th:replace="~{base :: logo}"></div>
+	<div class="container">
+		<div th:replace="~{base :: titulo('Cadastro Propriedade')}"></div>
+		<nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3 ">
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link" href="/proprietario">Proprietário</a>
+					<a class="nav-item nav-link" href="/animal">Animal</a>
+					<a class="nav-item nav-link" href="/funcionario">Funcionário</a>
+					<a class="nav-item nav-link" href="/propriedade">Propriedade</a>
+				</div>
+		</nav>
+		<div class="card mt-3">
+			<form th:object="${requisicaoNovaPropriedade}" class="card-body" th:action="@{/propriedade/novo} " method="POST">
+				<div class="form-group">
+					<label for="cnpj">Cnpj</label>
+					<input th:field="*{cnpj}" th:errorclass="is-invalid" class="form-control" type="number"
+						placeholder="Informe qual o cnpj da propriedade." />
+					<div class="invalid-feedback" th:errors="*{cnpj}">Errors do Cnpj da Propriedade</div>
+					<div class="form-group">
+						<label for="nome">Nome</label>
+						<input th:field="*{nome}" th:errorclass="is-invalid" class="form-control"
+							placeholder="Nome da Propriedade" />
+						<div class="invalid-feedback" th:errors="*{nome}">Errors do Nome da Propriedade</div>
+					</div>
+					<div class="form-group">
+						<label for="pais">País</label>
+						<select class="form-control" id="pais" th:field="*{pais}">
+						<option value="">Selecione o País</option>
+						<option th:each="pais : ${T(br.edu.ifms.sagp.model.enums.PaisEnum).values()}" 
+							th:value="${pais.displayValue}" th:text="${pais.displayValue}">
+						</option>
+					</select>
+						<div class="invalid-feedback" th:errors="*{pais}">Errors do Pais da Propriedade
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="estado">Estado/UF</label>
+						<select class="form-control" id="estado" th:field="*{estado}">
+						<option value="">Selecione o Estado/UF</option>
+						<option th:each="estado : ${T(br.edu.ifms.sagp.model.enums.EstadoEnum).values()}" 
+							th:value="${estado.displayValue}" th:text="${estado.displayValue}">
+						</option>
+					</select>
+						<div class="invalid-feedback" th:errors="*{estado}">Errors do Estado da Propriedade</div>
+					</div>
+					<div class="form-group">
+						<label for="municipio">Município</label>
+						<input th:field="*{municipio}" th:errorclass="is-invalid" class="form-control"
+							type="text" placeholder="Digite o Município da Propriedade" />
+						<div class="invalid-feedback" th:errors="*{municipio}">Errors do Municipio Propriedade</div>
+					</div>
+					<button class="btn btn-primary mt-3" type="submit">Cadastrar</button>
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>

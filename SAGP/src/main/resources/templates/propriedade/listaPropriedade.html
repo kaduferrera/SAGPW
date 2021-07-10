@@ -1,0 +1,43 @@
+<html>
+
+<head th:replace="~{base :: head}"></head>
+
+<body>
+	<div th:replace="~{base :: logo}"></div>
+	<div class="container">
+		<div th:replace="~{base :: titulo('Sistema Para Gestão Pecuária')}"></div>
+		<nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3 ">
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link" href="/proprietario">Proprietário</a>
+					<a class="nav-item nav-link" href="/animal">Animal</a>
+					<a class="nav-item nav-link" href="/funcionario">Funcionário</a>
+					<a class="nav-item nav-link" href="/propriedade">Propriedade</a>
+				</div>
+				<a href="/propriedade/formulario"><button class="btn btn-outline-dark ">Nova Propriedade</button></a>
+		</nav>
+		<div>
+			<table class="table table-bordered caption-top">
+				<div class="card-header">Lista de Propriedades</div>
+				<thead>
+					<tr>
+						<th>Cnpj</th>
+						<th>Nome</th>
+						<th>País</th>
+						<th>Estado</th>
+						<th>Município</th>
+					</tr>
+				</thead>
+				<tr th:each="propriedade : ${propriedades}">
+					<td th:text="${propriedade.cnpj}">Cnpj</td>
+					<td th:text="${propriedade.nome}">Nome</td>
+					<td th:text="${propriedade.pais}">Pais</td>
+					<td th:text="${propriedade.estado}">Estado</td>
+					<td th:text="${propriedade.municipio}">Município</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>

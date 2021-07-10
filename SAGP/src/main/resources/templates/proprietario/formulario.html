@@ -1,0 +1,66 @@
+<html>
+
+<head th:replace="~{base :: head}"></head>
+
+<body>
+	<div th:replace="~{base :: logo}"></div>
+	<div class="container">
+		<div th:replace="~{base :: titulo('Cadastro Proprietário')}"></div>
+		<nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3 ">
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link" href="/proprietario">Proprietário</a>
+					<a class="nav-item nav-link" href="/animal">Animal</a>
+					<a class="nav-item nav-link" href="/funcionario">Funcionário</a>
+					<a class="nav-item nav-link" href="/propriedade">Propriedade</a>
+				</div>
+		</nav>
+		<div class="card mt-3">
+			<form th:object="${requisicaoNovoProprietario}" class="card-body" action="/proprietario/novo" method="POST">
+				<div class="form-group">
+						<label for="nivelPermissao">Nível Permissão</label>
+						<select class="form-control" id = "nivelPermissao" th:field="*{nivelPermissao}">
+							<option value="">Proprietário</option>
+						</select>
+						<div class="invalid-feedback" th:errors="*{nivelPermissao}">Errors do Nivel Permissao
+							Proprietario</div>
+				</div>
+				<div class="form-group">
+					<label for="cpfProprietario">CPF</label>
+					<input th:field="*{cpfProprietario}" th:errorclass="is-invalid" class="form-control" type="number"
+						placeholder="Informe qual o cpf do proprietário." />
+					<div class="invalid-feedback" th:errors="*{cpfProprietario}">Errors do Cpf Proprietario</div>
+					<div class="form-group">
+						<label for="nomeProprietario">Nome</label>
+						<input th:field="*{nomeProprietario}" th:errorclass="is-invalid" class="form-control"
+							placeholder="Nome do Proprietário" />
+						<div class="invalid-feedback" th:errors="*{nomeProprietario}">Errors do Nome Proprietario</div>
+					</div>
+					<div class="form-group">
+						<label for="senhaProprietario">Senha</label>
+						<input th:field="*{senhaProprietario}" th:errorclass="is-invalid" class="form-control"
+							placeholder="Senha do Proprietário" />
+						<div class="invalid-feedback" th:errors="*{senhaProprietario}">Errors da Senha Proprietario
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="emailProprietario">Email</label>
+						<input th:field="*{emailProprietario}" th:errorclass="is-invalid" class="form-control"
+							type="email" placeholder="Email do Proprietário" />
+						<div class="invalid-feedback" th:errors="*{emailProprietario}">Errors do Email Proprietario
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="telefoneProprietario">Telefone</label>
+						<input th:field="*{telefoneProprietario}" th:errorclass="is-invalid" class="form-control"
+							type="tel" placeholder="Telefone do Proprietário" />
+						<div class="invalid-feedback" th:errors="*{telefoneProprietario}">Errors do Telefone
+							Proprietario</div>
+					</div>
+					<button class="btn btn-primary mt-3" type="submit">Cadastrar</button>
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<html>
+
+<head th:replace="~{base :: head}"></head>
+
+<body>
+	<div th:replace="~{base :: logo}"></div>
+	<div class="container">
+		<div th:replace="~{base :: titulo('Sistema Para Gestão Pecuária')}"></div>
+		<nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3 ">
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link" href="/proprietario">Proprietário</a>
+					<a class="nav-item nav-link" href="/animal">Animal</a>
+					<a class="nav-item nav-link" href="/funcionario">Funcionário</a>
+					<a class="nav-item nav-link" href="/propriedade">Propriedade</a>
+				</div>
+				<a href="/funcionario/formulario"><button class="btn btn-outline-dark ">Novo Funcionário</button></a>
+		</nav>
+		<div>
+			<table class="table table-bordered caption-top">
+				<div class="card-header">Lista de Funcionários</div>
+				<thead>
+					<tr>
+						<th>Cpf</th>
+						<th>Nome</th>
+						<th>Último Acesso</th>
+						<th>Função</th>
+						<th>Nivel de Permissão</th>
+						<th>Telefone</th>
+					</tr>
+				</thead>
+				<tr th:each="funcionario : ${funcionarios}">
+					<td th:text="${funcionario.cpf}">Cpf</td>
+					<td th:text="${funcionario.nome}">Nome</td>
+					<td th:text="${funcionario.dataUltimoAcesso}">DataUltimoAcesso</td>
+					<td th:text="${funcionario.funcao}">Funcao</td>
+					<td th:text="${funcionario.nivelPermissao}">Nivel Permissao</td>
+					<td th:text="${funcionario.telefone}">Telefone</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>

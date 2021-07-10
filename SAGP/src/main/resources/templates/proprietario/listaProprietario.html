@@ -1,0 +1,41 @@
+<html>
+
+<head th:replace="~{base :: head}"></head>
+
+<body>
+	<div th:replace="~{base :: logo}"></div>
+	<div class="container">
+		<div th:replace="~{base :: titulo('Sistema Para Gestão Pecuária')}"></div>
+		<nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3 ">
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link" href="/proprietario">Proprietário</a>
+					<a class="nav-item nav-link" href="/animal">Animal</a>
+					<a class="nav-item nav-link" href="/funcionario">Funcionário</a>
+					<a class="nav-item nav-link" href="/propriedade">Propriedade</a>
+				</div>
+				<a href="/proprietario/formulario"><button class="btn btn-outline-dark ">Novo Proprietário</button></a>
+		</nav>
+		<div>
+			<table class="table table-bordered caption-top">
+				<div class="card-header">Lista de Proprietários</div>
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Cpf</th>
+						<th>Email</th>
+						<th>Telefone</th>
+					</tr>
+				</thead>
+				<tr th:each="proprietario : ${proprietarios}">
+					<td th:text="${proprietario.nome}">Nome</td>
+					<td th:text="${proprietario.cpf}">Cpf</td>
+					<td th:text="${proprietario.email}">Email</td>
+					<td th:text="${proprietario.telefone}">Telefone</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>

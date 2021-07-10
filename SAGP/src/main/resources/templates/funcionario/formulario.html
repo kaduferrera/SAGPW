@@ -1,0 +1,68 @@
+<html>
+
+<head th:replace="~{base :: head}"></head>
+
+<body>
+	<div th:replace="~{base :: logo}"></div>
+	<div class="container">
+		<div th:replace="~{base :: titulo('Cadastro Funcionário')}"></div>
+		<nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3 ">
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link" href="/proprietario">Proprietário</a>
+					<a class="nav-item nav-link" href="/animal">Animal</a>
+					<a class="nav-item nav-link" href="/funcionario">Funcionário</a>
+					<a class="nav-item nav-link" href="/propriedade">Propriedade</a>
+				</div>
+		</nav>
+		<div class="card mt-3">
+			<form th:object="${requisicaoNovoFuncionario}" class="card-body" action="/funcionario/novo" method="POST">
+				<div class="form-group mb-2">
+					<label for="funcao">Função</label>
+					<select class="form-control" id="funcao" th:field="*{funcao}">
+						<option value="">Selecione a função</option>
+						<option th:each="funcao : ${T(br.edu.ifms.sagp.model.enums.FuncaoEnum).values()}" 
+							th:value="${funcao}" th:text="${funcao.displayValue}">
+						</option>
+					</select>
+					<div class="invalid-feedback" th:errors="*{funcao}">Errors da Funcao Funcionario</div>
+				</div>
+				<div class="form-group mb-2">
+					<label for="nivelPermissao">Nível Permissão</label>
+
+					<select class="form-control" id="nivelPermissao" th:field="*{nivelPermissao}">
+						<option value="">Selecione o nível de permissão</option>
+						<option th:each="permissao : ${T(br.edu.ifms.sagp.model.enums.NivelPermissaoEnum).values()}" 
+							th:value="${permissao}" th:text="${permissao.displayValue}">
+						</option>
+					</select>
+					<div class="invalid-feedback" th:errors="*{nivelPermissao}">Errors do Nivel Permissao
+						Funcionario</div>
+				</div>
+
+				<div class="form-group">
+					<label for="cpf">CPF</label>
+					<input th:field="*{cpf}" th:errorclass="is-invalid" class="form-control" type="number"
+						placeholder="Informe qual o cpf do funcionário." />
+					<div class="invalid-feedback" th:errors="*{cpf}">Errors do Cpf Funcionario</div>
+				</div>
+				<div class="form-group">
+					<label for="nome">Nome</label>
+					<input th:field="*{nome}" th:errorclass="is-invalid" class="form-control"
+						placeholder="Nome do Funcionário" />
+					<div class="invalid-feedback" th:errors="*{nome}">Errors do Nome Funcionario</div>
+				</div>
+				<div class="form-group">
+					<label for="telefone">Telefone</label>
+					<input th:field="*{telefone}" th:errorclass="is-invalid" class="form-control" type="tel"
+						placeholder="Telefone do Funcionário" />
+					<div class="invalid-feedback" th:errors="*{telefone}">Errors do Telefone
+						Funcionario</div>
+				</div>
+				<button class="btn btn-primary mt-3" type="submit">Cadastrar</button>
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>
